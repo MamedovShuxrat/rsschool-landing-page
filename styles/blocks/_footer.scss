@@ -1,0 +1,105 @@
+@use "../mixins" as *;
+
+.footer {
+  &__inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+    padding: 100px;
+    border-radius: 40px;
+    background: var(--bg-container);
+  }
+
+  &__offer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 40px;
+  }
+
+  &__title {
+    color: var(--text-inverse);
+    @include heading-2($accent: true);
+  }
+
+  &__socials {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  &__social {
+    display: flex;
+    width: 60px;
+    height: 60px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100px;
+    border: 1px solid var(--border-primary);
+    color: var(--text-inverse);
+    transition: background 0.2s, border-color 0.2s;
+  }
+
+  &__contacts {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 40px;
+  }
+
+  &__heading {
+    color: var(--text-inverse);
+    @include heading-3;
+  }
+
+  &__links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-inverse);
+    @include body-medium;
+    transition: opacity 0.2s;
+  }
+}
+
+@media (min-width: 769px) {
+  .footer {
+    &__social {
+      &:hover {
+        background: var(--bg-page);
+        color: var(--text-primary);
+        border-color: var(--border-primary);
+      }
+    }
+  }
+}
+@media (max-width: 1024px) {
+  .footer {
+    &__inner {
+      gap: 40px;
+      padding: 100px 60px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .footer {
+    &__inner {
+      flex-wrap: wrap;
+    }
+
+    &__contacts,
+    &__offer {
+      width: 100%;
+    }
+  }
+}

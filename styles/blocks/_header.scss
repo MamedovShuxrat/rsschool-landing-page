@@ -1,6 +1,11 @@
+@use "../mixins" as *;
+
 .header {
+  position: relative;
+  z-index: 10;
   width: 100%;
   padding-top: 20px;
+  margin-bottom: 20px;
 
   &__inner {
     display: flex;
@@ -20,7 +25,9 @@
     img {
       width: 100px;
       height: 60px;
-      display: block;
+    }
+    .dark-logo {
+      display: none;
     }
   }
 
@@ -39,18 +46,15 @@
     flex-direction: column;
     align-items: center;
     gap: 4px;
-    color: #403f3d;
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 150%;
-    text-decoration: none;
+    color: var(--text-primary);
+    @include link-button;
     transition: color 0.2s;
 
     &::after {
       content: "";
       height: 2px;
       width: 0;
-      background: #403f3d;
+      background: var(--text-primary);
       transition: width 0.25s ease;
     }
 
@@ -69,14 +73,12 @@
 
   &__theme {
     display: flex;
-    width: 88px;
-    height: 44px;
     padding: 4px;
     justify-content: center;
     align-items: center;
     gap: 8px;
     border-radius: 100px;
-    border: 1px solid #c1b6ad;
+    border: 1px solid var(--border-primary);
     background: transparent;
     cursor: pointer;
     transition: border-color 0.2s;
@@ -90,12 +92,13 @@
     align-items: center;
     flex-shrink: 0;
     border-radius: 100px;
-    color: #403f3d;
+    color: var(--text-primary);
     box-sizing: border-box;
+    transition: background 0.3s ease-in-out;
 
     &.active {
-      background: #b0907a;
-      color: #e1d4c9;
+      background: var(--text-accent);
+      color: var(--text-inverse);
     }
   }
 
@@ -104,15 +107,14 @@
     flex-direction: column;
     align-items: center;
     gap: 4px;
-    color: #403f3d;
-    text-decoration: none;
+    color: var(--text-primary);
     position: relative;
 
     &::after {
       content: "";
       height: 2px;
       width: 0;
-      background: #403f3d;
+      background: var(--text-primary);
       transition: width 0.25s ease;
     }
 
@@ -121,13 +123,11 @@
       justify-content: center;
       align-items: center;
       gap: 8px;
-      font-size: 16px;
-      font-weight: 600;
-      line-height: 150%;
-      color: #403f3d;
+      @include link-button;
+      color: var(--text-primary);
 
       svg {
-        color: #3d3d40;
+        color: var(--text-primary);
         display: block;
       }
 
@@ -149,17 +149,26 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
     flex-shrink: 0;
     border-radius: 100px;
-    border: 1px solid #403f3d;
+    border: 1px solid var(--text-primary);
 
     span {
       display: block;
       width: 16px;
       height: 2px;
-      background: #403f3d;
+      background: var(--text-primary);
+      transition: transform 0.3s ease;
     }
+  }
+
+  &_open &__burger span:first-child {
+    transform: translateY(5px) rotate(45deg);
+  }
+
+  &_open &__burger span:last-child {
+    transform: translateY(-5px) rotate(-45deg);
   }
 }
 
@@ -181,13 +190,41 @@
 
 @media (min-width: 769px) {
   .header {
+    &__panel {
+      display: contents;
+    }
+
+    &__logo {
+      order: 1;
+    }
+
+    &__nav {
+      order: 2;
+    }
+
+    &__actions {
+      order: 3;
+    }
+
+    &__menu {
+      order: 4;
+      margin-left: 24px;
+    }
+
     &__link:hover::after {
       width: 100%;
     }
 
     &__theme {
       &:hover {
-        border-color: #b0907a;
+        border-color: var(--text-accent);
+      }
+
+      &-option {
+        &:hover {
+          color: var(--text-inverse);
+          background: var(--bg-container);
+        }
       }
     }
 
@@ -228,12 +265,46 @@
 
 @media (max-width: 768px) {
   .header {
-    &__nav {
-      display: none;
-    }
-
     &__burger {
       display: flex;
+    }
+
+    &__panel {
+      position: fixed;
+      top: 80px;
+      left: 0;
+      width: 100%;
+      height: calc(100dvh - 80px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 60px;
+      padding: 60px 16px;
+      overflow-y: auto;
+      background: var(--bg-page);
+
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-16px);
+      transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+    }
+
+    &_open &__panel {
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+    }
+
+    &__nav {
+      flex: none;
+      align-self: auto;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    &__link,
+    &__menu-link {
+      @include burger-link;
     }
   }
 }
@@ -255,9 +326,9 @@
       gap: 12px;
     }
 
-    &__theme {
-      width: 76px;
-      height: 40px;
+    &__panel {
+      top: 60px;
+      height: calc(100dvh - 60px);
     }
   }
 }

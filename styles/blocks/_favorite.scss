@@ -1,0 +1,142 @@
+@use "../mixins" as *;
+
+.favorite {
+  &__title {
+    @include heading-2;
+    text-align: center;
+  }
+
+  &__slider {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    margin-top: 40px;
+  }
+
+  &__viewport {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+  }
+
+  &__track {
+    width: 100%;
+    max-width: 480px;
+    overflow: hidden;
+  }
+
+  &__slide-row {
+    display: flex;
+    transition: transform 0.5s ease;
+  }
+
+  &__slide {
+    display: flex;
+    flex: 0 0 100%;
+    justify-content: center;
+  }
+
+  &__card {
+    display: flex;
+    width: 100%;
+    max-width: 480px;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  &__img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+    object-fit: cover;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  &__name {
+    color: var(--text-primary);
+    text-align: center;
+    @include heading-3;
+  }
+
+  &__desc {
+    color: var(--text-primary);
+    text-align: center;
+    @include body-medium;
+  }
+
+  &__price {
+    color: var(--text-primary);
+    text-align: center;
+    @include heading-3;
+  }
+
+  &__controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  &__dot {
+    width: 40px;
+    height: 4px;
+    padding: 0;
+    border: none;
+    border-radius: 100px;
+    background: var(--border-primary);
+    cursor: pointer;
+    transition: background 0.2s;
+
+    &.active {
+      background: var(--border-inverse);
+    }
+  }
+
+  &__arrow {
+    display: flex;
+    width: 60px;
+    height: 60px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 100px;
+    border: 1px solid var(--border-inverse);
+    background: transparent;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+  }
+}
+
+@media (min-width: 769px) {
+  .favorite {
+    &__arrow {
+      &:hover {
+        background: var(--border-inverse);
+        color: var(--bg-page);
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .favorite {
+    &__viewport {
+      gap: 8px;
+    }
+
+    &__arrow {
+      width: 40px;
+      height: 40px;
+    }
+  }
+}

@@ -1,5 +1,11 @@
 @use "base/reset";
+@use "base/colors";
 @use "base/fonts";
 @use "base/common";
 
 @use "blocks/header";
+@use "blocks/hero";
+@use "blocks/favorite";
+@use "blocks/about";
+@use "blocks/app";
+@use "blocks/footer";
