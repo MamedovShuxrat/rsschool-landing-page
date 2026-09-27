@@ -1,0 +1,126 @@
+@use "../mixins" as *;
+
+.menu {
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  &__title {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    color: var(--text-primary);
+    @include heading-2;
+  }
+
+  &__tabs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  &__tab-icon {
+    font-size: 16px;
+
+    img {
+      display: block;
+      width: 20px;
+      height: 20px;
+      object-fit: contain;
+    }
+  }
+
+  &__grid {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: flex-start;
+    align-content: flex-start;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  &__preview {
+    display: flex;
+    width: 310px;
+    height: 506px;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 40px;
+    border: 1px solid var(--border-primary);
+    overflow: hidden;
+    cursor: pointer;
+
+    &[hidden] {
+      display: none;
+    }
+
+    &-img {
+      width: 310px;
+      height: 310px;
+      flex-shrink: 0;
+      display: block;
+      border-radius: 40px;
+      object-fit: cover;
+    }
+    &-desc {
+      display: flex;
+      flex: 1 0 0;
+      padding: 20px;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    &-title {
+      color: var(--text-primary);
+      @include heading-3;
+    }
+
+    &-desc-text {
+      color: var(--text-primary);
+      @include body-medium;
+    }
+    &-price {
+      margin-top: auto;
+      color: var(--text-primary);
+      @include heading-3;
+    }
+  }
+
+  &__more {
+    display: flex;
+    align-self: center;
+    width: 60px;
+    height: 60px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: 1px solid var(--border-inverse);
+    background: transparent;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+
+    &[hidden] {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+}
+
+@media (min-width: 769px) {
+  .menu__more:hover {
+    background: var(--border-inverse);
+    color: var(--bg-page);
+  }
+}
+
+@media (max-width: 575px) {
+}

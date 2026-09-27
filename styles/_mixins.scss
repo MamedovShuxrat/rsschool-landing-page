@@ -42,9 +42,11 @@ $mobile: 768px;
 }
 
 @mixin caption {
-  font-size: 10px;
   font-weight: 600;
-  line-height: 140%;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: 0%;
+  text-align: center;
 }
 
 @mixin link-button {

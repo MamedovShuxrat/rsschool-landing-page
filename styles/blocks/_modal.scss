@@ -1,0 +1,131 @@
+@use "../mixins" as *;
+
+.modal {
+  width: calc(100% - 32px);
+  max-width: 800px;
+  max-height: calc(100dvh - 32px);
+  margin: auto;
+  padding: 0;
+  border: 1px solid var(--border-primary);  
+  border-radius: 40px;
+  background: var(--bg-page);
+  color: var(--text-primary);
+
+  &::backdrop {
+    background: var(--bg-overlay);
+  }
+
+  &__window {
+    display: flex;
+    gap: 20px;
+    padding: 16px;
+  }
+
+  &__img-wrap {
+    flex-shrink: 0;
+    width: 310px;
+    height: 310px;
+    border-radius: 40px;
+    overflow: hidden;
+  }
+
+  &__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__content {
+    display: flex;
+    flex: 1;
+    min-width: 0;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  &__title {
+    @include heading-3;
+  }
+
+  &__desc {
+    @include body-medium;
+  }
+
+  &__group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__label {
+    @include body-medium;
+  }
+
+  &__options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  &__total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @include heading-3;
+  }
+
+  &__note {
+    display: flex;
+    gap: 8px;
+    padding: 12px 0;
+    border-top: 1px solid var(--border-primary);
+    @include caption;
+
+    svg {
+      flex-shrink: 0;
+    }
+
+    &-text {
+      font-weight: 600;
+      font-size: 10px;
+      line-height: 140%;
+    }
+  }
+
+  &__close {
+    width: 100%;
+    padding: 10px 0;
+    border-radius: 100px;
+    border: 1px solid var(--bg-container);
+    background: transparent;
+    color: var(--text-primary);
+    @include link-button;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+  }
+}
+
+html:has(.modal[open]) {
+  overflow: hidden;
+}
+
+@media (min-width: 769px) {
+  .modal__close:hover {
+    background: var(--bg-container);
+    color: var(--text-inverse);
+  }
+}
+
+@media (max-width: 640px) {
+  .modal {
+    &__img-wrap {
+      display: none;
+    }
+  }
+}

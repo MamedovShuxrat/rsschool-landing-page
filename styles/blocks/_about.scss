@@ -29,7 +29,10 @@
     width: 100%;
     border-radius: 20px;
     overflow: hidden;
-
+    img {
+      transform: scale(1.1);
+      transition: transform 0.5s ease;
+    }
     &--tall {
       height: 590px;
     }
@@ -62,11 +65,18 @@
 }
 
 @media (min-width: 769px) {
+  .about {
+    &__card:hover {
+      img {
+        transform: scale(1);
+      }
+    }
+  }
 }
 
 @media (max-width: 575px) {
-  .about{
-    &__card{
+  .about {
+    &__card {
       height: 400px;
     }
   }

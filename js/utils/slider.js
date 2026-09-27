@@ -12,6 +12,7 @@ export function initSlider() {
     
     // для 3 слайдов: (2 + 1 + 3) % 3 = 0,  (0 - 1 + 3) % 3 = 2
     current = (index + slides.length) % slides.length;
+
     row.style.transform = `translateX(-${current * 100}%)`;
 
     dots.forEach((dot, i) => {

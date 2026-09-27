@@ -4,6 +4,8 @@ body {
   color: var(--text-primary);
   transition: background 0.3s, color 0.3s;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .container {
@@ -15,6 +17,7 @@ body {
 
 .text-accent {
   color: var(--text-accent);
+  font-style: italic;
 }
 
 body.lock {
