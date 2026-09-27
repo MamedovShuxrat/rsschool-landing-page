@@ -86,7 +86,7 @@
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 575px) {
   .hero {
     &__inner {
       padding: 24px;
@@ -94,6 +94,11 @@
 
     &__bg {
       border-radius: 24px;
+    }
+    &__button svg {
+      width: 24px;
+      margin-left: 8px;
+      opacity: 1;
     }
   }
 }
